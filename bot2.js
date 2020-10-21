@@ -1,6 +1,4 @@
-//proxyreboot
-//proxy_reboot_bot
-//Use this token to access the HTTP API: 1229564192:AAF-E3sQHOJbIAirfAep1dBpPutpf6FVG1k
+
 
 import Telegraf from 'telegraf'
 import {
