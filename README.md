@@ -2,5 +2,7 @@
 
 make reboot proxy modem
 
-```express``` for web version
-```telegraf``` fro telegram bot
+main functionality from lib ```nightmare``` \n
+
+```express``` for web version \n
+```telegraf``` fro telegram bot \n
