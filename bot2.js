@@ -1,12 +1,10 @@
-//proxyreboot
-//proxy_reboot_bot
-//Use this token to access the HTTP API: 1229564192:AAF-E3sQHOJbIAirfAep1dBpPutpf6FVG1k
-
 import Telegraf from 'telegraf'
 import {
   RebootNightmare
 } from './nightmare.js'
 import fs from 'fs'
+import {RebootPuppeteer} from './puppeteer.js' 
+
 
 let globalMessages = []
 let serversData = []
@@ -29,7 +27,6 @@ bot.on('text', async (ctx) => {
   if (readyForReboot.length >= 1) {
     let promises = []
     for (let proxy of readyForReboot) {
-      
       promises.push(MakeReboot(proxy))
     }
     let rebootResult = await Promise.all(promises)
@@ -83,13 +80,18 @@ async function CheckProxyExist(records) {
 
 async function MakeReboot(proxyRecord) {
   try {
-  console.log('MakeReboot',proxyRecord);
+    console.log('MakeReboot',proxyRecord);
 
-    await RebootNightmare(proxyRecord[0], proxyRecord[1], proxyRecord[2], proxyRecord[3], proxyRecord[4]).then(rebootRes => {
+    await RebootPuppeteer(proxyRecord[0], proxyRecord[1], proxyRecord[2], proxyRecord[3], proxyRecord[4]).then(rebootRes => {
       if (rebootRes === undefined) {
         globalMessages.push(`${proxyRecord[0]}:${proxyRecord[1]}: Reboot OK 👍`)
       }
     })
+    // await RebootNightmare(proxyRecord[0], proxyRecord[1], proxyRecord[2], proxyRecord[3], proxyRecord[4]).then(rebootRes => {
+    //   if (rebootRes === undefined) {
+    //     globalMessages.push(`${proxyRecord[0]}:${proxyRecord[1]}: Reboot OK 👍`)
+    //   }
+    // })
   } catch (error) {
     globalMessages.push(error.message)
   }
