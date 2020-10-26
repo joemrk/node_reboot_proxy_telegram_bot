@@ -10,7 +10,7 @@ let globalMessages = []
 let serversData = []
 
 
-const bot = new Telegraf('1229564192:AAF-E3sQHOJbIAirfAep1dBpPutpf6FVG1k')
+const bot = new Telegraf(process.env.BOT_TOKEN)
 bot.start((ctx) => ctx.reply('Send info in format ```ip:port```', {
   parse_mode: 'MarkdownV2'
 }))
